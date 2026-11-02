@@ -73,7 +73,7 @@ const tgIcon = '<path d="M21 4 3 11l6 2 2 6 3-4 5 4z"/>';
         <a
           href={d.switchTo.href}
           hreflang={d.switchTo.label.toLowerCase()}
-          aria-label={d.switchTo.aria}
+          aria-label={`${d.switchTo.label} — ${d.switchTo.aria}`}
           class="flex h-10 items-center rounded-lg border border-line px-3 text-sm font-semibold text-muted transition-colors hover:border-muted hover:text-ink"
         >
           {d.switchTo.label}

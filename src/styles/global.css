@@ -2,8 +2,9 @@
 
 /* Цвета и шрифты. Меняя их здесь, меняем весь сайт. */
 @theme {
-  --font-display: "Onest", system-ui, sans-serif;
-  --font-sans: "Manrope", system-ui, sans-serif;
+  /* Сами шрифты подключает Astro (astro.config.mjs), здесь — ссылки на них */
+  --font-display: var(--font-onest);
+  --font-sans: var(--font-manrope);
 
   --color-bg: #09090b;
   --color-surface: #131316;

@@ -1,4 +1,5 @@
----
+﻿---
+import { Font } from 'astro:assets';
 import '../styles/global.css';
 import { t, type Lang } from '../i18n';
 
@@ -22,15 +23,16 @@ const { meta } = t[lang];
     <meta property="og:type" content="website" />
     <meta name="theme-color" content="#09090b" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="alternate" hreflang="ru" href="/" />
-    <link rel="alternate" hreflang="en" href="/en/" />
+    <link rel="canonical" href={new URL(lang === 'ru' ? '/' : '/en/', Astro.site)} />
+    <!-- Языковые версии: поисковики показывают нужную пользователю -->
+    <link rel="alternate" hreflang="ru" href={new URL('/', Astro.site)} />
+    <link rel="alternate" hreflang="en" href={new URL('/en/', Astro.site)} />
+    <link rel="alternate" hreflang="x-default" href={new URL('/', Astro.site)} />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Onest:wght@500;600;700&subset=cyrillic&display=swap"
-    />
+    <!-- Предзагружаем шрифты первого экрана: основной текст и заголовок -->
+    <Font cssVariable="--font-manrope" preload={[{ weight: 400, subset: lang === 'ru' ? 'cyrillic' : 'latin' }]} />
+    <!-- Onest — один файл на все толщины (вариативный шрифт), фильтр по толщине к нему не применяется -->
+    <Font cssVariable="--font-onest" preload />
   </head>
   <body>
     <a
